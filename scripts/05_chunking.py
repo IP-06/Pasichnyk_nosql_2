@@ -83,7 +83,7 @@ def process_and_upload_strategy(strategy_name: str, chunking_func):
     all_vectors = []
     
     for idx, row in df_30.iterrows():
-        arxiv_id = str(row.get("arxiv_id", f"paper_{idx}"))
+        arxiv_id = str(row["id"]) if "id" in row and pd.notna(row["id"]) else str(row.get("arxiv_id", f"paper_{idx}"))
         title = str(row.get("title", ""))
         abstract = str(row.get("abstract", ""))
         year = int(row.get("year", 0)) if pd.notna(row.get("year")) else 0
